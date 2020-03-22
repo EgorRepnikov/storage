@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/storage
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Success
+          when: on_success
+          command: |
+            docker --version
+            docker login -u=$DOCKER_LOGIN -p=$DOCKER_PASSWORD
+            docker build -t egorrepnikov/storage:$CIRCLE_BRANCH --build-arg MACHINE_NAME=storage-$CIRCLE_BRANCH .
+            docker push egorrepnikov/storage:$CIRCLE_BRANCH
+            echo "Docker build made sucessfully!! for storage $CIRCLE_BRANCH"
