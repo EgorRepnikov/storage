@@ -13,7 +13,6 @@ mod routes;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
-    dotenv::dotenv().ok();
     HttpServer::new(|| {
         App::new()
             .configure(routes)

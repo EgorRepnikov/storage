@@ -2,7 +2,9 @@ use serde::Deserialize;
 
 #[derive(Clone, Deserialize, Debug)]
 pub struct Config {
-    pub server: String
+    pub server: String,
+    pub storage_dir: String,
+    pub images_storage_dir: String
 }
 
 lazy_static! {
