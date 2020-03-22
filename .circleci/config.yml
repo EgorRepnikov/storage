@@ -3,6 +3,8 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/storage
+    docker:
+      - image: cibuilds/docker:19.03
     steps:
       - checkout
       - setup_remote_docker

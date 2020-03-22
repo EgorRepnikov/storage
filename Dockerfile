@@ -1,11 +1,15 @@
-FROM rust:1.42
-
-WORKDIR /app
+FROM rust:latest as builder
 
 COPY . .
 
 RUN cargo build --release
 
-COPY target/release/storage .
+FROM rust:latest
 
-CMD ["storage"]
+COPY --from=builder /target/release/storage .
+
+RUN ls -la /storage
+
+EXPOSE 8080
+
+ENTRYPOINT ["/storage"]
