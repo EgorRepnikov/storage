@@ -32,3 +32,13 @@ pub async fn store(resource: Path<String>, image: Json<StoreRequest>) -> Result<
     file.write_all(data.as_slice())?;
     Ok("Created".to_string())
 }
+
+pub async fn remove(params: Path<(String, String)>) -> Result<String, std::io::Error> {
+    let path = std::path::Path::new(&std::env::current_dir().unwrap())
+        .join(&CONFIG.storage_dir)
+        .join(&CONFIG.images_storage_dir)
+        .join(params.0.to_string())
+        .join(params.1.to_string());
+    std::fs::remove_file(path)?;
+    Ok("Deleted".to_string())
+}

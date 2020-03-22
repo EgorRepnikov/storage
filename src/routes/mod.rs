@@ -10,5 +10,6 @@ pub fn routes(config: &mut web::ServiceConfig) {
             web::scope("/images/{resource}")
                 .route("/{image_name:.*}", web::get().to(images::get))
                 .route("/", web::post().to(images::store))
+                .route("/{image_name:.*}", web::delete().to(images::remove))
         );
 }
