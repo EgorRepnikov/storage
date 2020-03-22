@@ -1,5 +1,6 @@
 use std::path::Path;
 use std::fs::create_dir;
+use base64::encode;
 
 use crate::config::CONFIG;
 
@@ -14,4 +15,8 @@ pub fn create_resource_dir(resource: String) {
         .join(&CONFIG.images_storage_dir)
         .join(resource.as_str());
     let _ = create_dir(resource_storage_path);
+}
+
+pub fn basic_auth_header() -> String {
+    encode(&CONFIG.auth_credentials)
 }

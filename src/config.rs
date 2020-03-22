@@ -4,7 +4,8 @@ use serde::Deserialize;
 pub struct Config {
     pub server: String,
     pub storage_dir: String,
-    pub images_storage_dir: String
+    pub images_storage_dir: String,
+    pub auth_credentials: String
 }
 
 lazy_static! {
