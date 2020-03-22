@@ -1,5 +1,7 @@
+use serde::Deserialize;
+
 #[derive(Clone, Deserialize, Debug)]
-struct Config {
+pub struct Config {
     pub server: String
 }
 
